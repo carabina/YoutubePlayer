@@ -107,9 +107,9 @@ typedef enum {
 
 @property BOOL cc_load_policy; // default is based on user preferences
 
-@property BOOL color; // default is red color.. available red or white (if YES then = red)
+@property BOOL color; // default is red color.. available red or white (if YES then = white)
 
-@property BOOL controls; // default is 1.. available 0,1,2 (1 and 2 is literally the same) so (if YES then = 1)
+@property BOOL controls; // default is 1.. available 0,1,2 (1 and 2 is literally the same) so (if YES then = 0)
 
 @property BOOL disablekb; // default is 0.. available 0 and 1
 
@@ -138,7 +138,7 @@ typedef enum {
 
 @property NSString *playerapiid; // Value can be any alphanumeric string
 
-@property BOOL playList; // Value is a comma-separated list of video IDs to play
+@property NSString *playList; // Value is a comma-separated list of video IDs to play
 
 @property BOOL playsinline; // default is 0
 
@@ -146,7 +146,7 @@ typedef enum {
 
 @property BOOL showinfo; // default is 1
 
-@property BOOL start; // Values: A positive integer. This parameter causes the player to begin playing the
+@property int start; // Values: A positive integer. This parameter causes the player to begin playing the
 // video at the given number of seconds from the start of the video
 
 @property BOOL theme; // default is dark, available dark and light (if YES == light)

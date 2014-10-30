@@ -20,8 +20,6 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.player = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 220)];
-
-    self.player.playList = YES;
     
     [self.player allowLandscapeMode];
     
