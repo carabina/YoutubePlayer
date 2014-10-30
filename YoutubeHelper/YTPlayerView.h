@@ -635,4 +635,10 @@ typedef enum {
  */
 - (int)playlistIndex;
 
+#pragma mark - Notifications
+
+- (void)allowLandscapeMode;
+
+- (void)allowAutoResizingPlayerFrame;
+
 @end

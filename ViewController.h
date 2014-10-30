@@ -8,14 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "YTPlayerView.h"
+#import "YoutubePlayer.h"
 
-@interface ViewController : UIViewController <YTPlayerViewDelegate>
+@interface ViewController : UIViewController 
 
-@property (nonatomic, strong) YTPlayerView *ytPlayer;
-
-@property (nonatomic) CGFloat screenWidth;
-@property (nonatomic) CGFloat screenHeight;
-
+@property (nonatomic, strong) YTPlayerView *player;
 
 @end
 
