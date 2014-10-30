@@ -702,8 +702,6 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
     
     // preserving users frame
     _prevFrame = self.frame;
-    // adding notifications
-    //  [self addNotifications];
 
     NSError *error = nil;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"YTPlayerView-iframe-player"
