@@ -692,9 +692,14 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
     // Remove the existing webView to reset any state
     [self.webView removeFromSuperview];
-    _webView = [self createNewWebView];
-    [self addSubview:self.webView];
-
+    
+    // creating webview for youtube player
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        _webView = [self createNewWebView];
+        [self addSubview:self.webView];
+    });
+    
     // preserving users frame
     _prevFrame = self.frame;
     // adding notifications
@@ -947,13 +952,17 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 - (UIWebView *)createNewWebView
 {
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.bounds];
+    if(!_webView)
+    {
+        _webView = [[UIWebView alloc] initWithFrame:self.bounds];
+        _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+        _webView.scrollView.scrollEnabled = NO;
+        _webView.scrollView.bounces = NO;
+        
+        return _webView;
+    }
     
-    webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    webView.scrollView.scrollEnabled = NO;
-    webView.scrollView.bounces = NO;
-    
-    return webView;
+    return _webView;
 }
 
 @end
