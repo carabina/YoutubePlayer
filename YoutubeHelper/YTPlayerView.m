@@ -68,6 +68,28 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 @implementation YTPlayerView
 
+@synthesize autohide = _autohide;
+@synthesize autoplay = _autoplay;
+@synthesize cc_load_policy = _cc_load_policy;
+@synthesize color = _color;
+@synthesize controls = _controls;
+@synthesize disablekb = _disablekb;
+@synthesize enablejsapi = _enablejsapi;
+@synthesize end = _end;
+@synthesize fullscreen = _fullscreen;
+@synthesize iv_load_policy = _iv_load_policy;
+@synthesize list = _list;
+@synthesize listType = _listType;
+@synthesize loops = _loops;
+@synthesize modestbranding = _modestbranding;
+@synthesize playerapiid = _playerapiid;
+@synthesize playList = _playList;
+@synthesize playsinline = _playsinline;
+@synthesize rel = _rel;
+@synthesize showinfo = _showinfo;
+@synthesize start = _start;
+@synthesize theme = _theme;
+
 - (BOOL)loadWithVideoId:(NSString *)videoId
 {
     return [self loadWithVideoId:videoId playerVars:nil];
@@ -961,6 +983,177 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
     }
     
     return _webView;
+}
+
+
+#pragma mark - Customs Setters and Getters
+
+-(BOOL)autohide {
+    return _autohide;
+}
+
+-(void)setAutohide:(BOOL)autohide {
+    _autohide = autohide;
+}
+
+-(BOOL)autoplay {
+    return _autoplay;
+}
+
+-(void)setAutoplay:(BOOL)autoplay {
+    _autoplay = autoplay;
+}
+
+-(BOOL)cc_load_policy {
+    return _cc_load_policy;
+}
+
+-(void)setCc_load_policy:(BOOL)cc_load_policy {
+    _cc_load_policy = cc_load_policy;
+}
+
+-(BOOL)color {
+    return _color;
+}
+
+-(void)setColor:(BOOL)color {
+    _color = color;
+}
+
+-(BOOL)controls {
+    return _controls;
+}
+
+-(void)setControls:(BOOL)controls {
+    _controls = controls;
+}
+
+-(BOOL)disablekb {
+    return _disablekb;
+}
+
+-(void)setDisablekb:(BOOL)disablekb {
+    _disablekb = disablekb;
+}
+
+-(BOOL)enablejsapi {
+    return _enablejsapi;
+}
+
+-(void)setEnablejsapi:(BOOL)enablejsapi {
+    _enablejsapi = enablejsapi;
+}
+
+-(int)end {
+    return _end;
+}
+
+-(void)setEnd:(int)end {
+    _end = end;
+}
+
+-(BOOL)fullscreen {
+    return _fullscreen;
+}
+
+-(void)setFullscreen:(BOOL)fullscreen {
+    _fullscreen = fullscreen;
+}
+
+-(BOOL)iv_load_policy {
+    return _iv_load_policy;
+}
+
+-(void)setIv_load_policy:(BOOL)iv_load_policy {
+    _iv_load_policy = iv_load_policy;
+}
+
+-(NSString*)list {
+    return _list;
+}
+
+-(void)setList:(NSString *)list {
+    _list = list;
+}
+
+-(NSString*)listType {
+    return _listType;
+}
+
+-(void)setListType:(NSString *)listType {
+    _listType = listType;
+}
+
+-(BOOL)loops {
+    return _loops;
+}
+
+-(void)setLoops:(BOOL)loops {
+    _loops = loops;
+}
+
+-(BOOL)modestbranding {
+    return _modestbranding;
+}
+
+-(void)setModestbranding:(BOOL)modestbranding {
+    _modestbranding = modestbranding;
+}
+
+-(NSString*)playerapiid {
+    return _playerapiid;
+}
+
+-(void)setPlayerapiid:(NSString *)playerapiid {
+    _playerapiid = playerapiid;
+}
+
+-(BOOL)playList {
+    return _playList;
+}
+
+-(void)setPlayList:(BOOL)playList {
+    _playList = playList;
+}
+
+-(BOOL)playsinline {
+    return _playsinline;
+}
+
+-(void)setPlaysinline:(BOOL)playsinline {
+    _playsinline = playsinline;
+}
+
+-(BOOL)rel {
+    return _rel;
+}
+
+-(void)setRel:(BOOL)rel {
+    _rel = rel;
+}
+
+-(BOOL)showinfo {
+    return _fullscreen;
+}
+
+-(void)setShowinfo:(BOOL)showinfo {
+    _showinfo = showinfo;
+}
+
+-(BOOL)start {
+    return _start;
+}
+
+-(void)setStart:(BOOL)start {
+    _start = start;
+}
+
+-(BOOL)theme {
+    return _theme;
+}
+
+-(void)setTheme:(BOOL)theme {
+    _theme = theme;
 }
 
 @end
