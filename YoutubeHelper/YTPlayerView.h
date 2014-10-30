@@ -689,8 +689,25 @@ typedef enum {
 
 #pragma mark - Notifications
 
+// Adding notifications to allow rotation when app is restricted to portrait mode only
+// and to resize the webview in landscape for fullscreen youtube player, more info here:
+//   https://developers.google.com/youtube/iframe_api_reference#getPlaylistIndex
+
+/**
+ * This method allows landscape mode when the app is retristed for portrait mode,
+ * but requires extra settings on the AppDelegate.m please find an example here:
+ *   https://developers.google.com/youtube/iframe_api_reference#getPlaylistIndex
+ *
+ */
 - (void)allowLandscapeMode;
 
+/**
+ * This method allows to update the youtube webview frame to change to full screen
+ * in landscape mode (Good for playlists).
+ * for more information find an example here:
+ *   https://developers.google.com/youtube/iframe_api_reference#getPlaylistIndex
+ *
+ */
 - (void)allowAutoResizingPlayerFrame;
 
 @end

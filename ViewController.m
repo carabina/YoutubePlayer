@@ -23,6 +23,7 @@
     
     self.player.autoplay = YES;
     self.player.modestbranding = YES;
+    self.player.listType = @"something";
     
     [self.player allowLandscapeMode];
     
