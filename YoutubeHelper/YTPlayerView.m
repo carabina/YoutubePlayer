@@ -108,6 +108,12 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
         playerVars = @{};
     }
     
+    if(self.dicParameters || self.dicParameters.count > 0)
+    {
+        NSDictionary *playerParams = @{ @"videoId" : videoId, @"playerVars" : self.dicParameters };
+        return [self loadWithPlayerParams:playerParams];
+    }
+    
     NSDictionary *playerParams = @{ @"videoId" : videoId, @"playerVars" : playerVars };
 
     return [self loadWithPlayerParams:playerParams];
@@ -115,12 +121,18 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 - (BOOL)loadWithPlaylistId:(NSString *)playlistId playerVars:(NSDictionary *)playerVars
 {
-
     // Mutable copy because we may have been passed an immutable config dictionary.
     NSMutableDictionary *tempPlayerVars = [[NSMutableDictionary alloc] init];
     [tempPlayerVars setValue:@"playlist" forKey:@"listType"];
     [tempPlayerVars setValue:playlistId forKey:@"list"];
     [tempPlayerVars addEntriesFromDictionary:playerVars];  // No-op if playerVars is null
+    [tempPlayerVars addEntriesFromDictionary:self.dicParameters];
+    
+    if(self.dicParameters || self.dicParameters.count > 0)
+    {
+        NSDictionary *playerParams = @{ @"playerVars" : tempPlayerVars };
+        return [self loadWithPlayerParams:playerParams];
+    }
 
     NSDictionary *playerParams = @{ @"playerVars" : tempPlayerVars };
     
@@ -696,12 +708,26 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
  */
 - (BOOL)loadWithPlayerParams:(NSDictionary *)additionalPlayerParams
 {
+    // Remove the existing webView to reset any state
+    [self.webView removeFromSuperview];
+    
+    // creating webview for youtube player
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        _webView = [self createNewWebView];
+        [self addSubview:self.webView];
+    });
+    
+    // preserving users frame
+    _prevFrame = self.frame;
+    
     NSDictionary *playerCallbacks = @{
         @"onReady" : @"onReady",
         @"onStateChange" : @"onStateChange",
         @"onPlaybackQualityChange" : @"onPlaybackQualityChange",
         @"onError" : @"onPlayerError"
     };
+    
     NSMutableDictionary *playerParams = [[NSMutableDictionary alloc] init];
     [playerParams addEntriesFromDictionary:additionalPlayerParams];
     [playerParams setValue:@"100%" forKey:@"height"];
@@ -713,20 +739,6 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
     {
         [playerParams setValue:[[NSDictionary alloc] init] forKey:@"playerVars"];
     }
-
-    // Remove the existing webView to reset any state
-    [self.webView removeFromSuperview];
-    
-    // creating webview for youtube player
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        _dicParameters = [[NSMutableDictionary alloc] init];
-        _webView = [self createNewWebView];
-        [self addSubview:self.webView];
-    });
-    
-    // preserving users frame
-    _prevFrame = self.frame;
 
     NSError *error = nil;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"YTPlayerView-iframe-player"
@@ -750,12 +762,16 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
     if (jsonRenderingError)
     {
         NSLog(@"Attempted configuration of player with invalid playerVars: %@ \tError: %@", playerParams, jsonRenderingError);
+        NSString *errMessage = [NSString stringWithFormat:@"\nAttempted configuration of player with invalid playerVars: %@ \nError: %@", playerParams, jsonRenderingError];
+        @throw [NSException exceptionWithName:NSGenericException reason:errMessage userInfo:nil];
         return NO;
     }
 
     NSString *playerVarsJsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 
     NSString *embedHTML = [NSString stringWithFormat:embedHTMLTemplate, playerVarsJsonString];
+    
+    NSLog(@"%@", embedHTML);
     
     [self.webView loadHTMLString:embedHTML baseURL:[NSURL URLWithString:@"about:blank"]];
     [self.webView setDelegate:self];
@@ -988,6 +1004,15 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
     return _webView;
 }
 
+- (NSMutableDictionary*)setDicParameters
+{
+    if(!_dicParameters)
+    {
+        _dicParameters = [[NSMutableDictionary alloc] init];
+        return _dicParameters;
+    }
+    return _dicParameters;
+}
 
 #pragma mark - Customs Setters and Getters
 
@@ -998,6 +1023,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setAutohide:(BOOL)autohide {
 
     if(autohide == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(1) forKey:@"autohide"];
     }
     _autohide = autohide;
@@ -1010,6 +1036,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setAutoplay:(BOOL)autoplay {
     
     if(autoplay == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(1) forKey:@"autoplay"];
     }
     _autoplay = autoplay;
@@ -1022,6 +1049,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setCc_load_policy:(BOOL)cc_load_policy {
     
     if(cc_load_policy == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(1) forKey:@"cc_load_policy"];
     }
     _cc_load_policy = cc_load_policy;
@@ -1034,6 +1062,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setColor:(BOOL)color {
     
     if(color == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@"white" forKey:@"color"];
     }
     _color = color;
@@ -1046,6 +1075,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setControls:(BOOL)controls {
     
     if(controls == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(0) forKey:@"controls"];
     }
     _controls = controls;
@@ -1058,6 +1088,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setDisablekb:(BOOL)disablekb {
     
     if(disablekb == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(1) forKey:@"disablekb"];
     }
     _disablekb = disablekb;
@@ -1070,6 +1101,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setEnablejsapi:(BOOL)enablejsapi {
     
     if(enablejsapi == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(1) forKey:@"enablejsapi"];
     }
     _enablejsapi = enablejsapi;
@@ -1082,6 +1114,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setEnd:(int)end {
     
     if(end > 0) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(end) forKey:@"end"];
     }
     _end = end;
@@ -1094,6 +1127,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setFullscreen:(BOOL)fullscreen {
     
     if(fullscreen == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(0) forKey:@"fs"];
     }
     _fullscreen = fullscreen;
@@ -1106,6 +1140,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setIv_load_policy:(BOOL)iv_load_policy {
     
     if(iv_load_policy == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(3) forKey:@"iv_load_policy"];
     }
     _iv_load_policy = iv_load_policy;
@@ -1118,6 +1153,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setList:(NSString *)list {
     
     if(list.length > 0) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:list forKey:@"list"];
     }
     _list = list;
@@ -1130,6 +1166,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setListType:(NSString *)listType {
     
     if(listType.length > 0) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:listType forKey:@"listType"];
     }
     _listType = listType;
@@ -1142,6 +1179,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setLoops:(BOOL)loops {
     
     if(loops == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(1) forKey:@"loop"];
     }
     _loops = loops;
@@ -1154,7 +1192,8 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setModestbranding:(BOOL)modestbranding {
     
     if(modestbranding == YES) {
-        [self.dicParameters setObject:@(1) forKey:@"modestbranding"];
+        _dicParameters = [self setDicParameters];
+        [_dicParameters setObject:[NSNumber numberWithInt:1] forKey:@"modestbranding"];
     }
     _modestbranding = modestbranding;
 }
@@ -1166,6 +1205,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setPlayerapiid:(NSString *)playerapiid {
     
     if(playerapiid.length > 0) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:playerapiid forKey:@"playerapiid"];
     }
     _playerapiid = playerapiid;
@@ -1178,6 +1218,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setPlayList:(NSString*)playList {
     
     if(playList.length > 0) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:playList forKey:@"playlist"];
     }
     _playList = playList;
@@ -1190,6 +1231,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setPlaysinline:(BOOL)playsinline {
     
     if(playsinline == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(1) forKey:@"playsinline"];
     }
     _playsinline = playsinline;
@@ -1202,6 +1244,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setRel:(BOOL)rel {
     
     if(rel == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(1) forKey:@"rel"];
     }
     _rel = rel;
@@ -1214,6 +1257,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setShowinfo:(BOOL)showinfo {
     
     if(showinfo == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(0) forKey:@"showinfo"];
     }
     _showinfo = showinfo;
@@ -1226,6 +1270,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setStart:(int)start {
     
     if(start == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@(start) forKey:@"start"];
     }
     _start = start;
@@ -1238,6 +1283,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setTheme:(BOOL)theme {
     
     if(theme == YES) {
+        _dicParameters = [self setDicParameters];
         [self.dicParameters setObject:@"light" forKey:@"theme"];
     }
     _theme = theme;

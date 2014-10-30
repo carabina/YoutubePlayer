@@ -21,6 +21,9 @@
     
     self.player = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 220)];
     
+    self.player.autoplay = YES;
+    self.player.modestbranding = YES;
+    
     [self.player allowLandscapeMode];
     
     [self.player allowAutoResizingPlayerFrame];
