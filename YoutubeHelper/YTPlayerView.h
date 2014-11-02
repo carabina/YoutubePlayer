@@ -100,6 +100,11 @@ typedef enum {
 @interface YTPlayerView : UIView<NSObject,UIWebViewDelegate>
 
 // for more information visit https://developers.google.com/youtube/player_parameters
+@property BOOL allowLandscapeMode;
+
+@property BOOL forceBackToPortraitMode;
+
+@property BOOL allowAutoResizingPlayerFrame;
 
 @property BOOL autohide; // default is 2.. available values 0,1,2 (1 and 2 literraly the same) so if(YES then = 1)
 
@@ -699,7 +704,7 @@ typedef enum {
  *   https://developers.google.com/youtube/iframe_api_reference#getPlaylistIndex
  *
  */
-- (void)allowLandscapeMode;
+//- (void)allowLandscapeMode;
 
 /**
  * This method allows to update the youtube webview frame to change to full screen
@@ -708,6 +713,6 @@ typedef enum {
  *   https://developers.google.com/youtube/iframe_api_reference#getPlaylistIndex
  *
  */
-- (void)allowAutoResizingPlayerFrame;
+//- (void)allowAutoResizingPlayerFrame;
 
 @end

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #import "YTPlayerView.h"
+#import "AppDelegate.h"
 
 #define IS_OS_6_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
 #define IS_OS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
@@ -70,6 +71,9 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 @implementation YTPlayerView
 
+@synthesize allowLandscapeMode = _allowLandscapeMode;
+@synthesize forceBackToPortraitMode = _forceBackToPortraitMode;
+@synthesize allowAutoResizingPlayerFrame = _allowAutoResizingPlayerFrame;
 @synthesize autohide = _autohide;
 @synthesize autoplay = _autoplay;
 @synthesize cc_load_policy = _cc_load_policy;
@@ -431,6 +435,22 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    if (self.allowLandscapeMode) {
+        // allows youtube player in landscape mode
+        if ([request.URL.absoluteString isEqualToString:@"ytplayer://onStateChange?data=3"])
+        {
+            [self playerStarted];
+            
+            return NO;
+        }
+        if ([request.URL.absoluteString isEqualToString:@"ytplayer://onStateChange?data=2"])
+        {
+            [self playerEnded];
+            
+            return NO;
+        }
+    }
+    
     if ([request.URL.scheme isEqual:@"ytplayer"])
     {
         [self notifyDelegateOfYouTubeCallbackUrl:request.URL];
@@ -870,20 +890,20 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
  * @param ...
  * @return void...
  */
-- (void)allowLandscapeMode
-{
-    // adding notification center to receive AVPlayer states
-    if(IS_OS_6_OR_LATER && !IS_OS_8_OR_LATER)
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStarted:) name:@"UIMoviePlayerControllerDidEnterFullscreenNotification" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerEnded:) name:@"UIMoviePlayerControllerWillExitFullscreenNotification" object:nil];
-    }
-    else if (IS_OS_8_OR_LATER)
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStarted:) name:UIWindowDidBecomeVisibleNotification object:self.window];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerEnded:) name:UIWindowDidBecomeHiddenNotification object:self.window];
-    }
-}
+//- (void)allowLandscapeMode
+//{
+//    // adding notification center to receive AVPlayer states
+//    if(IS_OS_6_OR_LATER && !IS_OS_8_OR_LATER)
+//    {
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStarted) name:@"UIMoviePlayerControllerDidEnterFullscreenNotification" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerEnded) name:@"UIMoviePlayerControllerWillExitFullscreenNotification" object:nil];
+//    }
+//    else if (IS_OS_8_OR_LATER)
+//    {
+////        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStarted) name:UIWindowDidBecomeVisibleNotification object:self.window];
+////        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerEnded) name:UIWindowDidBecomeHiddenNotification object:self.window];
+//    }
+//}
 
 
 /**
@@ -893,16 +913,10 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
  * @param ...
  * @return void...
  */
-- (void)allowAutoResizingPlayerFrame
-{
-    // current device
-    UIDevice *device = [UIDevice currentDevice];
-    
-    //Tell it to start monitoring the accelerometer for orientation
-    [device beginGeneratingDeviceOrientationNotifications];
-    //Get the notification centre for the app
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:device];
-}
+//- (void)allowAutoResizingPlayerFrame
+//{
+//    
+//}
 
 
 /**
@@ -922,12 +936,30 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
     }
     else if (IS_OS_8_OR_LATER)
     {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeVisibleNotification object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeHiddenNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeVisibleNotification object:nil];
+//        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeHiddenNotification object:nil];
     }
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView*)webView
+{
+    if(self.allowLandscapeMode)
+    {
+        // adding listener to webView
+        [_webView stringByEvaluatingJavaScriptFromString:@" for (var i = 0, videos = document.getElementsByTagName('video'); i < videos.length; i++) {"
+                                                         @"      videos[i].addEventListener('webkitbeginfullscreen', function(){ "
+                                                         @"           window.location = 'videohandler://begin-fullscreen';"
+                                                         @"      }, false);"
+                                                         @""
+                                                         @"      videos[i].addEventListener('webkitendfullscreen', function(){ "
+                                                         @"           window.location = 'videohandler://end-fullscreen';"
+                                                         @"      }, false);"
+                                                         @" }"
+                                                         ];
+    }
 }
 
 
@@ -938,9 +970,11 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
  * @param ...
  * @return void...
  */
-- (void)playerStarted:(NSNotification*)notification
+- (void)playerStarted//:(NSNotification*)notification
 {
-    // do something?
+    ((AppDelegate*)[[UIApplication sharedApplication] delegate]).videoIsInFullscreen = YES;
+    
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
 }
 
 
@@ -951,11 +985,31 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
  * @param ...
  * @return void...
  */
-- (void)playerEnded:(NSNotification*)notification
+- (void)playerEnded//:(NSNotification*)notification
 {
-    // do something?
+    if(self.forceBackToPortraitMode == YES)
+    {
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIInterfaceOrientationPortrait] forKey:@"orientation"];
+        
+        ((AppDelegate*)[[UIApplication sharedApplication] delegate]).videoIsInFullscreen = NO;
+        
+        [self supportedInterfaceOrientations];
+        
+        [self shouldAutorotate:UIInterfaceOrientationPortrait];
+        
+        [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
+    }
 }
 
+- (NSInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotate:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 /**
  * Updates player frame depending on orientation
@@ -997,6 +1051,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
         _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
         _webView.scrollView.scrollEnabled = NO;
         _webView.scrollView.bounces = NO;
+        _webView.delegate = self;
         
         return _webView;
     }
@@ -1015,6 +1070,46 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 }
 
 #pragma mark - Customs Setters and Getters
+
+// Custom setters and getters for youtube player parameters
+// to be loaded when player loads video.
+// These parameters can be set by the user, if they are not
+// they won't be loaded to the player because, youtube api
+// will use defaults parameters when player created.
+
+-(BOOL)allowLandscapeMode {
+    return _allowLandscapeMode;
+}
+
+-(void)setAllowLandscapeMode:(BOOL)allowLandscapeMode {
+    _allowLandscapeMode = allowLandscapeMode;
+}
+
+-(BOOL)forceBackToPortraitMode {
+    return _forceBackToPortraitMode;
+}
+
+-(void)setForceBackToPortraitMode:(BOOL)forceBackToPortraitMode {
+    _forceBackToPortraitMode = forceBackToPortraitMode;
+}
+
+-(BOOL)allowAutoResizingPlayerFrame {
+    return _allowAutoResizingPlayerFrame;
+}
+
+-(void)setAllowAutoResizingPlayerFrame:(BOOL)allowAutoResizingPlayerFrame {
+    
+    if(allowAutoResizingPlayerFrame == YES) {
+        // current device
+        UIDevice *device = [UIDevice currentDevice];
+        
+        //Tell it to start monitoring the accelerometer for orientation
+        [device beginGeneratingDeviceOrientationNotifications];
+        //Get the notification centre for the app
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:device];
+    }
+    _allowAutoResizingPlayerFrame = allowAutoResizingPlayerFrame;
+}
 
 -(BOOL)autohide {
     return _autohide;

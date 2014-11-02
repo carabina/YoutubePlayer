@@ -20,14 +20,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     self.player = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 220)];
-    
     self.player.autoplay = YES;
     self.player.modestbranding = YES;
-    self.player.listType = @"something";
-    
-    [self.player allowLandscapeMode];
-    
-    [self.player allowAutoResizingPlayerFrame];
+    self.player.allowLandscapeMode = YES;
+    self.player.allowAutoResizingPlayerFrame = YES;
     
     [self.player loadWithPlaylistId:@"PLEE58C6029A8A6ADE"];
     

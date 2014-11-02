@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YTPlayerView.h"
 
-@interface ViewController : UIViewController 
+@interface ViewController : UIViewController
 
 @property (nonatomic, strong) YTPlayerView *player;
 
