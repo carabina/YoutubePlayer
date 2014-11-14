@@ -1,4 +1,4 @@
-[YoutubePlayer - Simple youtube player](http://jv17.github.io/YoutubePlayer/)
+YoutubePlayer - Simple youtube player
 =======================
 
 ###[Embedded Youtube Video Player - (Objective-C).](http://jv17.github.io/YoutubePlayer/)
@@ -6,22 +6,22 @@ This a simple youtube player which includes the Youtube helper api to get the mo
 Also, to share some of my school and personal work. 
 
 ###Use,
-**1) Download the zip file and extract it to add the YoutubeHelper folder to your project.**
+**1)** Download the zip file and extract it to add the YoutubeHelper folder to your project.
 
-**2) After these folder is added to the project (remember to select copy file if necessary when adding to the project) you can start using this helper library really simple as:**
+**2)** After these folder is added to the project (remember to select copy file if necessary when adding to the project) you can start using this helper library really simple as:
 
-**3) Create a player property**
+**3)** Create a player property
 ```
     @property (nonatomic, strong) YTPlayerView *player;
 ```
 
-**4) Then, set the player**
+**4)** Then, set the player
 ```
     // setting up the player
     self.player = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 50, 320, 350)];
 ```
 
-**5) Then, you can load a playlist or just a simple video with the youtube videoId or playlistId**
+**5)** Then, you can load a playlist or just a simple video with the youtube videoId or playlistId
 ```
     // loading videoId 
     [self.player loadWithVideoId:@"O8TiugM6Jg"];
@@ -30,7 +30,7 @@ Also, to share some of my school and personal work.
     [self.player loadWithPlaylistId:@"PLEE58C6029A8A6ADE"];
 ```
 
-**6) Optional, you can also load the video/playlist with some parameters to customize the player**
+**6)** Optional, you can also load the video/playlist with some parameters to customize the player
 ```
     // first create your dictionary to set the different parameters
     @property (nonatomic, strong) NSDictionary *dictionary;
@@ -56,13 +56,13 @@ Also, to share some of my school and personal work.
     [self.player loadWithPlaylistId:@"PLEE58C6029A8A6ADE"];
 ```
 
-**7) Finally, add the player to your view and Done!**
+**7)** Finally, add the player to your view and Done!
 ```
     // adding to subview
     [self.view addSubview:self.player];
 ```
 
-**8) Extra, Some fun functions were added to the project that you might want to use (just set the variable before loading the video) as**
+**8)** Extra, Some fun functions were added to the project that you might want to use (just set the variable before loading the video) as
 ```
     // allows landscape mode 
     self.player.allowLandscapeMode = YES;
