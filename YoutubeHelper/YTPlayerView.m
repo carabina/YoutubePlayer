@@ -435,6 +435,11 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    if ([request.URL.absoluteString isEqualToString:@"ytplayer://onError?data=150"])
+    {
+        [self nextVideo]; // play next video if current can't be played
+    }
+    
     if (self.allowLandscapeMode) {
         // allows youtube player in landscape mode
         if ([request.URL.absoluteString isEqualToString:@"ytplayer://onStateChange?data=3"])
@@ -883,41 +888,6 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 
 #pragma mark - Helper Functions
-/**
- * Adds customs notifications
- * @name addNotifications
- *
- * @param ...
- * @return void...
- */
-//- (void)allowLandscapeMode
-//{
-//    // adding notification center to receive AVPlayer states
-//    if(IS_OS_6_OR_LATER && !IS_OS_8_OR_LATER)
-//    {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStarted) name:@"UIMoviePlayerControllerDidEnterFullscreenNotification" object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerEnded) name:@"UIMoviePlayerControllerWillExitFullscreenNotification" object:nil];
-//    }
-//    else if (IS_OS_8_OR_LATER)
-//    {
-////        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerStarted) name:UIWindowDidBecomeVisibleNotification object:self.window];
-////        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerEnded) name:UIWindowDidBecomeHiddenNotification object:self.window];
-//    }
-//}
-
-
-/**
- * Adds customs notifications
- * @name addNotifications
- *
- * @param ...
- * @return void...
- */
-//- (void)allowAutoResizingPlayerFrame
-//{
-//    
-//}
-
 
 /**
  * Removes customs notifications
@@ -928,18 +898,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
  */
 - (void)dealloc
 {
-    // removing notification center to receive AVPlayer states
-    if(IS_OS_6_OR_LATER && !IS_OS_8_OR_LATER)
-    {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIMoviePlayerControllerDidEnterFullscreenNotification" object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UIMoviePlayerControllerWillExitFullscreenNotification" object:nil];
-    }
-    else if (IS_OS_8_OR_LATER)
-    {
-//        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeVisibleNotification object:nil];
-//        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeHiddenNotification object:nil];
-    }
-    
+    // removing notification center
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
     [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }
@@ -951,11 +910,11 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
         // adding listener to webView
         [_webView stringByEvaluatingJavaScriptFromString:@" for (var i = 0, videos = document.getElementsByTagName('video'); i < videos.length; i++) {"
                                                          @"      videos[i].addEventListener('webkitbeginfullscreen', function(){ "
-                                                         @"           window.location = 'videohandler://begin-fullscreen';"
+                                                         @"           window.location = 'ytplayer://begin-fullscreen';"
                                                          @"      }, false);"
                                                          @""
                                                          @"      videos[i].addEventListener('webkitendfullscreen', function(){ "
-                                                         @"           window.location = 'videohandler://end-fullscreen';"
+                                                         @"           window.location = 'ytplayer://end-fullscreen';"
                                                          @"      }, false);"
                                                          @" }"
                                                          ];
@@ -1010,6 +969,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 
 /**
  * Updates player frame depending on orientation

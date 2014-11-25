@@ -23,6 +23,7 @@
     self.player.autoplay = YES;
     self.player.modestbranding = YES;
     self.player.allowLandscapeMode = YES;
+    self.player.forceBackToPortraitMode = YES;
     self.player.allowAutoResizingPlayerFrame = YES;
     
     [self.player loadWithPlaylistId:@"PLEE58C6029A8A6ADE"];
