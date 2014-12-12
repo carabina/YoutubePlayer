@@ -435,7 +435,13 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if ([request.URL.absoluteString isEqualToString:@"ytplayer://onError?data=150"])
+//    NSLog(@"***** Checking ERROR -> %@", request.URL.absoluteString);
+
+    if ([request.URL.absoluteString isEqualToString:@"ytplayer://onStateChange?data=2"])
+    {
+        [self playVideo]; // play video if goes into background
+    }
+    else if ([request.URL.absoluteString isEqualToString:@"ytplayer://onError?data=150"] || [request.URL.absoluteString isEqualToString:@"ytplayer://onStateChange?data=0"])
     {
         [self nextVideo]; // play next video if current can't be played
     }
