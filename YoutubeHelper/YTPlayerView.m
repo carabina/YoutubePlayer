@@ -439,7 +439,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
     if ([request.URL.absoluteString isEqualToString:@"ytplayer://onStateChange?data=2"])
     {
-        [self playVideo]; // play video if goes into background
+//        [self playVideo]; // play video if goes into background
     }
     else if ([request.URL.absoluteString isEqualToString:@"ytplayer://onError?data=150"] || [request.URL.absoluteString isEqualToString:@"ytplayer://onStateChange?data=0"])
     {
