@@ -1,6 +1,4 @@
-#YoutubePlayer - Simple youtube player
-
-##[Embedded Youtube Video Player - (Objective-C).](http://jv17.github.io/YoutubePlayer/)
+#[Embedded Youtube Video Player - (Objective-C).](http://jv17.github.io/YoutubePlayer/)
 This a simple youtube player which includes the Youtube helper api to get the most of it. The intention is to help some developers in the use of their framework:
 Also, to share some of my school and personal work. 
 
