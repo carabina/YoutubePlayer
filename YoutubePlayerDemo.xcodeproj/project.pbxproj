@@ -32,24 +32,24 @@
 
 /* Begin PBXFileReference section */
 		2442119F644B3CDA8EB84029 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CC198171A2548E8003FB720 /* SphereMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SphereMenu.h; sourceTree = "<group>"; };
-		3CC198181A2548E8003FB720 /* SphereMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SphereMenu.m; sourceTree = "<group>"; };
+		3CC198171A2548E8003FB720 /* SphereMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SphereMenu.h; path = "/Users/JV-Dev/Documents/YoutubePlayer/SphereMenu.h"; sourceTree = "<absolute>"; };
+		3CC198181A2548E8003FB720 /* SphereMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SphereMenu.m; path = "/Users/JV-Dev/Documents/YoutubePlayer/SphereMenu.m"; sourceTree = "<absolute>"; };
 		3CCFC41F19FB1565000838B6 /* YoutubePlayerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubePlayerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CCFC42319FB1565000838B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3CCFC42419FB1565000838B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3CCFC42619FB1565000838B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		3CCFC42719FB1565000838B6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3CCFC42919FB1565000838B6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3CCFC42A19FB1565000838B6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3CCFC42319FB1565000838B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		3CCFC42419FB1565000838B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../main.m; sourceTree = "<group>"; };
+		3CCFC42619FB1565000838B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
+		3CCFC42719FB1565000838B6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../AppDelegate.m; sourceTree = "<group>"; };
+		3CCFC42919FB1565000838B6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../ViewController.h; sourceTree = "<group>"; };
+		3CCFC42A19FB1565000838B6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../ViewController.m; sourceTree = "<group>"; };
 		3CCFC42D19FB1565000838B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3CCFC42F19FB1565000838B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3CCFC42F19FB1565000838B6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		3CCFC43219FB1565000838B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3CCFC43819FB1565000838B6 /* YoutubePlayerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoutubePlayerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCFC43D19FB1565000838B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CCFC43E19FB1565000838B6 /* YoutubePlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YoutubePlayerTests.m; sourceTree = "<group>"; };
-		3CCFC44919FB15DF000838B6 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = "/Users/JV-Dev/Development/YoutubePlayer/YoutubePlayer/YoutubeHelper/YTPlayerView.h"; sourceTree = "<absolute>"; };
-		3CCFC44A19FB15DF000838B6 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = "/Users/JV-Dev/Development/YoutubePlayer/YoutubePlayer/YoutubeHelper/YTPlayerView.m"; sourceTree = "<absolute>"; };
-		3CCFC44C19FB1666000838B6 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "YTPlayerView-iframe-player.html"; path = "/Users/JV-Dev/Development/YoutubePlayer/YoutubePlayer/YoutubeHelper/YTPlayerView-iframe-player.html"; sourceTree = "<absolute>"; };
+		3CCFC44919FB15DF000838B6 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = "/Users/JV-Dev/Documents/YoutubePlayer/YoutubeHelper/YTPlayerView.h"; sourceTree = "<absolute>"; };
+		3CCFC44A19FB15DF000838B6 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = "/Users/JV-Dev/Documents/YoutubePlayer/YoutubeHelper/YTPlayerView.m"; sourceTree = "<absolute>"; };
+		3CCFC44C19FB1666000838B6 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "YTPlayerView-iframe-player.html"; path = "/Users/JV-Dev/Documents/YoutubePlayer/YoutubeHelper/YTPlayerView-iframe-player.html"; sourceTree = "<absolute>"; };
 		4A2E4DF1BC1352F88E751D27 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8B36F46B0C021396AA83183A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -357,6 +357,7 @@
 				3CCFC42D19FB1565000838B6 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		3CCFC43119FB1565000838B6 /* LaunchScreen.xib */ = {
@@ -365,6 +366,7 @@
 				3CCFC43219FB1565000838B6 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
