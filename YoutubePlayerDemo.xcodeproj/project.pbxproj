@@ -13,7 +13,6 @@
 		3CCC183C1A414E0B00AFC7BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CCC182F1A414E0B00AFC7BF /* Main.storyboard */; };
 		3CCC183D1A414E0B00AFC7BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CCC18311A414E0B00AFC7BF /* Images.xcassets */; };
 		3CCC183E1A414E0B00AFC7BF /* SphereMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC18341A414E0B00AFC7BF /* SphereMenu.m */; };
-		3CCC183F1A414E0B00AFC7BF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CCC18361A414E0B00AFC7BF /* Info.plist */; };
 		3CCC18401A414E0B00AFC7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC18371A414E0B00AFC7BF /* main.m */; };
 		3CCC18411A414E0B00AFC7BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC18391A414E0B00AFC7BF /* ViewController.m */; };
 		3CCFC43F19FB1565000838B6 /* YoutubePlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCFC43E19FB1565000838B6 /* YoutubePlayerTests.m */; };
@@ -273,7 +272,6 @@
 				3CCC183C1A414E0B00AFC7BF /* Main.storyboard in Resources */,
 				3CCC183D1A414E0B00AFC7BF /* Images.xcassets in Resources */,
 				3CCC183B1A414E0B00AFC7BF /* LaunchScreen.xib in Resources */,
-				3CCC183F1A414E0B00AFC7BF /* Info.plist in Resources */,
 				3CCFC44D19FB1666000838B6 /* YTPlayerView-iframe-player.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
