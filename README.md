@@ -1,10 +1,10 @@
 ### Embedded Youtube Video Player - (Objective-C).
 This a simple youtube player which includes the Youtube helper api to get the most of it. The intention is to help some developers in the use of their framework.
 
-### Previw in Portrait Mode
+### Preview in Portrait Mode
 ![screenshot-1](Previews/youtube.gif)
 
-### Previw in Portrait Landscape
+### Preview in Portrait Landscape
 ![screenshot-1](Previews/youtubelandscape.gif)
 
 ### Screenshots in Portrait Mode
