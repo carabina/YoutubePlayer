@@ -4,25 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-ChameleonFramework.xcscheme</key>
+		<key>YoutubePlayerDemo.xcscheme</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>478C23EC869EC158FD3D4815</key>
+		<key>3CCFC41E19FB1565000838B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9086523D721BA7438A202B0</key>
+		<key>3CCFC43719FB1565000838B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

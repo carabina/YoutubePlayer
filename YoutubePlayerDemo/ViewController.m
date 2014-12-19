@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "SphereMenu.h"
-#import "ChameleonFramework/Chameleon.h"
+#import "Chameleon.h"
 
 @interface ViewController () <SphereMenuDelegate>
 @property (nonatomic) int counter;

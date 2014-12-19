@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34FEDF344505DD7ABD8E78B6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2442119F644B3CDA8EB84029 /* libPods.a */; };
 		3CCC183A1A414E0B00AFC7BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC182C1A414E0B00AFC7BF /* AppDelegate.m */; };
-		3CCC183B1A414E0B00AFC7BF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CCC182D1A414E0B00AFC7BF /* LaunchScreen.xib */; };
-		3CCC183C1A414E0B00AFC7BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CCC182F1A414E0B00AFC7BF /* Main.storyboard */; };
 		3CCC183D1A414E0B00AFC7BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CCC18311A414E0B00AFC7BF /* Images.xcassets */; };
 		3CCC183E1A414E0B00AFC7BF /* SphereMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC18341A414E0B00AFC7BF /* SphereMenu.m */; };
 		3CCC18401A414E0B00AFC7BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC18371A414E0B00AFC7BF /* main.m */; };
@@ -18,6 +15,13 @@
 		3CCFC43F19FB1565000838B6 /* YoutubePlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCFC43E19FB1565000838B6 /* YoutubePlayerTests.m */; };
 		3CCFC44B19FB15DF000838B6 /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCFC44A19FB15DF000838B6 /* YTPlayerView.m */; };
 		3CCFC44D19FB1666000838B6 /* YTPlayerView-iframe-player.html in Resources */ = {isa = PBXBuildFile; fileRef = 3CCFC44C19FB1666000838B6 /* YTPlayerView-iframe-player.html */; };
+		A8B7659D1A4395E100D95B33 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3CCC182D1A414E0B00AFC7BF /* LaunchScreen.xib */; };
+		A8B7659E1A4395E700D95B33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CCC182F1A414E0B00AFC7BF /* Main.storyboard */; };
+		A8EC7C6E1A43917D00E48DF6 /* ChameleonStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EC7C651A43917D00E48DF6 /* ChameleonStatusBar.m */; };
+		A8EC7C6F1A43917D00E48DF6 /* NSArray+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EC7C671A43917D00E48DF6 /* NSArray+Chameleon.m */; };
+		A8EC7C701A43917D00E48DF6 /* UIColor+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EC7C691A43917D00E48DF6 /* UIColor+Chameleon.m */; };
+		A8EC7C711A43917D00E48DF6 /* UIColor+CIELAB.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EC7C6B1A43917D00E48DF6 /* UIColor+CIELAB.m */; };
+		A8EC7C721A43917D00E48DF6 /* UIViewController+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EC7C6D1A43917D00E48DF6 /* UIViewController+Chameleon.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +35,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2442119F644B3CDA8EB84029 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCC182B1A414E0B00AFC7BF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CCC182C1A414E0B00AFC7BF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3CCC182E1A414E0B00AFC7BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -47,11 +50,21 @@
 		3CCFC43819FB1565000838B6 /* YoutubePlayerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoutubePlayerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CCFC43D19FB1565000838B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CCFC43E19FB1565000838B6 /* YoutubePlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YoutubePlayerTests.m; sourceTree = "<group>"; };
-		3CCFC44919FB15DF000838B6 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = "/Users/JV-Dev/Documents/YoutubePlayer/YoutubeHelper/YTPlayerView.h"; sourceTree = "<absolute>"; };
-		3CCFC44A19FB15DF000838B6 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = "/Users/JV-Dev/Documents/YoutubePlayer/YoutubeHelper/YTPlayerView.m"; sourceTree = "<absolute>"; };
-		3CCFC44C19FB1666000838B6 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "YTPlayerView-iframe-player.html"; path = "/Users/JV-Dev/Documents/YoutubePlayer/YoutubeHelper/YTPlayerView-iframe-player.html"; sourceTree = "<absolute>"; };
-		4A2E4DF1BC1352F88E751D27 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		8B36F46B0C021396AA83183A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		3CCFC44919FB15DF000838B6 /* YTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = YoutubeHelper/YTPlayerView.h; sourceTree = "<group>"; };
+		3CCFC44A19FB15DF000838B6 /* YTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = YoutubeHelper/YTPlayerView.m; sourceTree = "<group>"; };
+		3CCFC44C19FB1666000838B6 /* YTPlayerView-iframe-player.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "YTPlayerView-iframe-player.html"; path = "YoutubeHelper/YTPlayerView-iframe-player.html"; sourceTree = "<group>"; };
+		A8EC7C621A43917D00E48DF6 /* Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chameleon.h; sourceTree = "<group>"; };
+		A8EC7C631A43917D00E48DF6 /* ChameleonMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChameleonMacros.h; sourceTree = "<group>"; };
+		A8EC7C641A43917D00E48DF6 /* ChameleonStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChameleonStatusBar.h; sourceTree = "<group>"; };
+		A8EC7C651A43917D00E48DF6 /* ChameleonStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChameleonStatusBar.m; sourceTree = "<group>"; };
+		A8EC7C661A43917D00E48DF6 /* NSArray+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Chameleon.h"; sourceTree = "<group>"; };
+		A8EC7C671A43917D00E48DF6 /* NSArray+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Chameleon.m"; sourceTree = "<group>"; };
+		A8EC7C681A43917D00E48DF6 /* UIColor+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Chameleon.h"; sourceTree = "<group>"; };
+		A8EC7C691A43917D00E48DF6 /* UIColor+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Chameleon.m"; sourceTree = "<group>"; };
+		A8EC7C6A1A43917D00E48DF6 /* UIColor+CIELAB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CIELAB.h"; sourceTree = "<group>"; };
+		A8EC7C6B1A43917D00E48DF6 /* UIColor+CIELAB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CIELAB.m"; sourceTree = "<group>"; };
+		A8EC7C6C1A43917D00E48DF6 /* UIViewController+Chameleon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Chameleon.h"; sourceTree = "<group>"; };
+		A8EC7C6D1A43917D00E48DF6 /* UIViewController+Chameleon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Chameleon.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +72,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34FEDF344505DD7ABD8E78B6 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +99,8 @@
 		3CCC182A1A414E0B00AFC7BF /* YoutubePlayerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3CCC18321A414E0B00AFC7BF /* Menu */,
+				A8EC7C611A43917D00E48DF6 /* Chameleon */,
 				3CCC182B1A414E0B00AFC7BF /* AppDelegate.h */,
 				3CCC182C1A414E0B00AFC7BF /* AppDelegate.m */,
 				3CCC18381A414E0B00AFC7BF /* ViewController.h */,
@@ -94,7 +108,6 @@
 				3CCC182D1A414E0B00AFC7BF /* LaunchScreen.xib */,
 				3CCC182F1A414E0B00AFC7BF /* Main.storyboard */,
 				3CCC18311A414E0B00AFC7BF /* Images.xcassets */,
-				3CCC18321A414E0B00AFC7BF /* Menu */,
 				3CCC18351A414E0B00AFC7BF /* Supporting Files */,
 			);
 			path = YoutubePlayerDemo;
@@ -122,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				3C7B43F31A00680500A92BAF /* YoutubePlayer */,
-				60E047C6205761D5B5064DEE /* Pods */,
 				FAD07377F99D993DEB32B5F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -164,19 +176,28 @@
 			name = YoutubeHelper;
 			sourceTree = "<group>";
 		};
-		60E047C6205761D5B5064DEE /* Pods */ = {
+		A8EC7C611A43917D00E48DF6 /* Chameleon */ = {
 			isa = PBXGroup;
 			children = (
-				8B36F46B0C021396AA83183A /* Pods.debug.xcconfig */,
-				4A2E4DF1BC1352F88E751D27 /* Pods.release.xcconfig */,
+				A8EC7C621A43917D00E48DF6 /* Chameleon.h */,
+				A8EC7C631A43917D00E48DF6 /* ChameleonMacros.h */,
+				A8EC7C641A43917D00E48DF6 /* ChameleonStatusBar.h */,
+				A8EC7C651A43917D00E48DF6 /* ChameleonStatusBar.m */,
+				A8EC7C661A43917D00E48DF6 /* NSArray+Chameleon.h */,
+				A8EC7C671A43917D00E48DF6 /* NSArray+Chameleon.m */,
+				A8EC7C681A43917D00E48DF6 /* UIColor+Chameleon.h */,
+				A8EC7C691A43917D00E48DF6 /* UIColor+Chameleon.m */,
+				A8EC7C6A1A43917D00E48DF6 /* UIColor+CIELAB.h */,
+				A8EC7C6B1A43917D00E48DF6 /* UIColor+CIELAB.m */,
+				A8EC7C6C1A43917D00E48DF6 /* UIViewController+Chameleon.h */,
+				A8EC7C6D1A43917D00E48DF6 /* UIViewController+Chameleon.m */,
 			);
-			name = Pods;
+			path = Chameleon;
 			sourceTree = "<group>";
 		};
 		FAD07377F99D993DEB32B5F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2442119F644B3CDA8EB84029 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,11 +209,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3CCFC44219FB1565000838B6 /* Build configuration list for PBXNativeTarget "YoutubePlayerDemo" */;
 			buildPhases = (
-				0F6552F69B0A0D33B2BC964D /* Check Pods Manifest.lock */,
 				3CCFC41B19FB1565000838B6 /* Sources */,
 				3CCFC41C19FB1565000838B6 /* Frameworks */,
 				3CCFC41D19FB1565000838B6 /* Resources */,
-				5642A63C430756C831C7966E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,9 +288,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CCC183C1A414E0B00AFC7BF /* Main.storyboard in Resources */,
+				A8B7659E1A4395E700D95B33 /* Main.storyboard in Resources */,
+				A8B7659D1A4395E100D95B33 /* LaunchScreen.xib in Resources */,
 				3CCC183D1A414E0B00AFC7BF /* Images.xcassets in Resources */,
-				3CCC183B1A414E0B00AFC7BF /* LaunchScreen.xib in Resources */,
 				3CCFC44D19FB1666000838B6 /* YTPlayerView-iframe-player.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,49 +304,21 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0F6552F69B0A0D33B2BC964D /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		5642A63C430756C831C7966E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		3CCFC41B19FB1565000838B6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3CCC183A1A414E0B00AFC7BF /* AppDelegate.m in Sources */,
+				A8EC7C711A43917D00E48DF6 /* UIColor+CIELAB.m in Sources */,
 				3CCC183E1A414E0B00AFC7BF /* SphereMenu.m in Sources */,
+				A8EC7C701A43917D00E48DF6 /* UIColor+Chameleon.m in Sources */,
+				A8EC7C6E1A43917D00E48DF6 /* ChameleonStatusBar.m in Sources */,
+				A8EC7C721A43917D00E48DF6 /* UIViewController+Chameleon.m in Sources */,
 				3CCC18401A414E0B00AFC7BF /* main.m in Sources */,
 				3CCFC44B19FB15DF000838B6 /* YTPlayerView.m in Sources */,
 				3CCC18411A414E0B00AFC7BF /* ViewController.m in Sources */,
+				A8EC7C6F1A43917D00E48DF6 /* NSArray+Chameleon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +442,6 @@
 		};
 		3CCFC44319FB1565000838B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B36F46B0C021396AA83183A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -465,7 +455,6 @@
 		};
 		3CCFC44419FB1565000838B6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A2E4DF1BC1352F88E751D27 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -492,7 +481,7 @@
 				INFOPLIST_FILE = YoutubePlayerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = YoutubePlayerDemoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoutubePlayer.app/YoutubePlayer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoutubePlayerDemo.app/YoutubePlayerDemo";
 			};
 			name = Debug;
 		};
@@ -507,7 +496,7 @@
 				INFOPLIST_FILE = YoutubePlayerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = YoutubePlayerDemoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoutubePlayer.app/YoutubePlayer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/YoutubePlayerDemo.app/YoutubePlayerDemo";
 			};
 			name = Release;
 		};
