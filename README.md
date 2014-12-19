@@ -5,7 +5,7 @@ This a simple youtube player which includes the Youtube helper api to get the mo
 ![screenshot-1](Previews/youtube.gif)
 
 ### Previw in Portrait Landscape
-![screenshot-1](Previews/youtube_lanscape.gif)
+![screenshot-1](Previews/youtubelandscape.gif)
 
 ### Screenshots in Portrait Mode
 ![screenshot-1](http://s4.postimg.org/7y62de33x/Photo_2014_12_16_7_07_03_PM.png)  ![screenshot-2](http://s2.postimg.org/mmiospfeh/Photo_2014_12_16_11_31_45_PM.png)  ![screenshot-3](http://s16.postimg.org/5o8xodqtx/Photo_2014_12_16_7_07_37_PM.png)
