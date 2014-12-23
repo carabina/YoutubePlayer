@@ -996,9 +996,21 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
         
         self.frame = CGRectMake(0, 0, self.screenWidth, self.screenHeight);
     }
-    else if(device.orientation == UIDeviceOrientationPortrait || device.orientation == UIDeviceOrientationPortraitUpsideDown)
+    else if(device.orientation == UIDeviceOrientationPortrait)
     {
-        self.frame = self.prevFrame;
+        self.frame = _prevFrame;
+    }
+    else if (device.orientation == UIDeviceOrientationPortraitUpsideDown)
+    {
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIInterfaceOrientationPortrait] forKey:@"orientation"];
+        
+        ((AppDelegate*)[[UIApplication sharedApplication] delegate]).videoIsInFullscreen = NO;
+        
+        [self supportedInterfaceOrientations];
+        
+        [self shouldAutorotate:UIInterfaceOrientationPortrait];
+        
+        [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
     }
 }
 
