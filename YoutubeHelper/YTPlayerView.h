@@ -100,63 +100,69 @@ typedef enum {
 @interface YTPlayerView : UIView<NSObject,UIWebViewDelegate>
 
 // for more information visit https://developers.google.com/youtube/player_parameters
-@property BOOL allowLandscapeMode;
+@property (nonatomic) BOOL allowLandscapeMode;
 
-@property BOOL forceBackToPortraitMode;
+@property (nonatomic) BOOL forceBackToPortraitMode;
 
-@property BOOL allowAutoResizingPlayerFrame;
+@property (nonatomic) BOOL allowAutoResizingPlayerFrame;
 
-@property BOOL autohide; // default is 2.. available values 0,1,2 (1 and 2 literraly the same) so if(YES then = 1)
+@property (nonatomic) BOOL autohide; // default is 2.. available values 0,1,2 (1 and 2 literraly the same) so if(YES then = 1)
 
-@property BOOL autoplay; // default is 0
+@property (nonatomic) BOOL autoplay; // default is 0
 
-@property BOOL cc_load_policy; // default is based on user preferences
+@property (nonatomic) BOOL cc_load_policy; // default is based on user preferences
 
-@property BOOL color; // default is red color.. available red or white (if YES then = white)
+@property (nonatomic) BOOL color; // default is red color.. available red or white (if YES then = white)
 
-@property BOOL controls; // default is 1.. available 0,1,2 (1 and 2 is literally the same) so (if YES then = 0)
+@property (nonatomic) BOOL controls; // default is 1.. available 0,1,2 (1 and 2 is literally the same) so (if YES then = 0)
 
-@property BOOL disablekb; // default is 0.. available 0 and 1
+@property (nonatomic) BOOL disablekb; // default is 0.. available 0 and 1
 
-@property BOOL enablejsapi; // default is 0
+@property (nonatomic) BOOL enablejsapi; // default is 0
 
-@property int end; // spicifies the time as a positive intiger
+@property (nonatomic) int end; // spicifies the time as a positive intiger
 
-@property BOOL fullscreen; // default is 1
+@property (nonatomic) BOOL fullscreen; // default is 1
 
 //@property BOOL hl; // wont be implemented for now, is for interface language
 
-@property BOOL iv_load_policy; // default is 1.. available values 1 or 3.
+@property (nonatomic) BOOL iv_load_policy; // default is 1.. available values 1 or 3.
 
-@property NSString *list; // if listType == search then is (value specifies the search query)
+@property (strong, nonatomic) NSString *list; // if listType == search then is (value specifies the search query)
 // if listType == user_uploads then is (value identifies the YouTube channel whose uploaded videos will be loaded)
 // if listType == user_uploads then is (value specifies a YouTube playlist ID. In the parameter value, you need to prepend the playlist ID with the letters PL as shown in the example below)
 // http://www.youtube.com/embed?listType=playlist&list=PLC77007E23FF423C6 == PLC77007E23FF423C6
 
-@property NSString *listType; // only allows the values -> playlist, search and user_uploads.
+@property (strong, nonatomic) NSString *listType; // only allows the values -> playlist, search and user_uploads.
 
-@property BOOL loops; // default is 0
+@property (nonatomic) BOOL loops; // default is 0
 
-@property BOOL modestbranding; // default is 0
+@property (nonatomic) BOOL modestbranding; // default is 0
 
 //BOOL origin; // wont be implement for now.
 
-@property NSString *playerapiid; // Value can be any alphanumeric string
+@property (strong, nonatomic) NSString *playerapiid; // Value can be any alphanumeric string
 
-@property NSString *playList; // Value is a comma-separated list of video IDs to play
+@property (strong, nonatomic) NSString *playList; // Value is a comma-separated list of video IDs to play
 
-@property BOOL playsinline; // default is 0
+@property (nonatomic) BOOL playsinline; // default is 0
 
-@property BOOL rel; // default is 1
+@property (nonatomic) BOOL rel; // default is 1
 
-@property BOOL showinfo; // default is 1
+@property (nonatomic) BOOL showinfo; // default is 1
 
-@property int start; // Values: A positive integer. This parameter causes the player to begin playing the
+@property (nonatomic) int start; // Values: A positive integer. This parameter causes the player to begin playing the
 // video at the given number of seconds from the start of the video
 
-@property BOOL theme; // default is dark, available dark and light (if YES == light)
+@property (nonatomic) BOOL theme; // default is dark, available dark and light (if YES == light)
 
-@property(nonatomic, strong, readonly) UIWebView *webView;
+@property (nonatomic) BOOL hd;
+
+@property (nonatomic) BOOL hd720;
+
+@property (nonatomic) BOOL hd1080;
+
+@property(nonatomic, strong) UIWebView *webView;
 
 /** A delegate to be notified on playback events. */
 @property(nonatomic, weak) id<YTPlayerViewDelegate> delegate;
