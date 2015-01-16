@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Youtube Player by JV17</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Youtube Player</h1>
+        <h2>in Objective-C</h2>
+        <a href="https://github.com/JV17/YoutubePlayer" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h3>
+<a id="embedded-youtube-video-player---objective-c" class="anchor" href="#embedded-youtube-video-player---objective-c" aria-hidden="true"><span class="octicon octicon-link"></span></a>Embedded Youtube Video Player - (Objective-C).</h3>
+
+<p>This a simple youtube player which includes the Youtube helper api to get the most of it. The intention is to help some developers in the use of their framework.</p>
+
+<h3>
+<a id="preview-in-portrait-mode" class="anchor" href="#preview-in-portrait-mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preview in Portrait Mode</h3>
+
+<p><img src="Previews/youtube.gif" alt="screenshot-1"></p>
+
+<h3>
+<a id="preview-in-portrait-landscape" class="anchor" href="#preview-in-portrait-landscape" aria-hidden="true"><span class="octicon octicon-link"></span></a>Preview in Portrait Landscape</h3>
+
+<p><img src="Previews/youtubelandscape.gif" alt="screenshot-1"></p>
+
+<h3>
+<a id="screenshots-in-portrait-mode" class="anchor" href="#screenshots-in-portrait-mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots in Portrait Mode</h3>
+
+<p><img src="http://s4.postimg.org/7y62de33x/Photo_2014_12_16_7_07_03_PM.png" alt="screenshot-1">  <img src="http://s2.postimg.org/mmiospfeh/Photo_2014_12_16_11_31_45_PM.png" alt="screenshot-2">  <img src="http://s16.postimg.org/5o8xodqtx/Photo_2014_12_16_7_07_37_PM.png" alt="screenshot-3"></p>
+
+<h3>
+<a id="screenshots-in-landscape-mode" class="anchor" href="#screenshots-in-landscape-mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots in Landscape Mode</h3>
+
+<p><img src="http://s27.postimg.org/noivfcx2r/Photo_2014_12_16_7_07_52_PM.png" alt="screenshot-4">
+<img src="http://s12.postimg.org/5cybqnxct/Photo_2014_12_16_7_08_23_PM.png" alt="screenshot-5"></p>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p><strong>1)</strong> Download the zip file and extract it. Then add the YoutubeHelper folder to your project.</p>
+
+<p><strong>2)</strong> After these folder have been added to the project (remember to select copy file if necessary when adding to the project) you can start using this helper library, it's really simple...</p>
+
+<p><strong>3)</strong> Create a player property.</p>
+
+<div class="highlight highlight-objc"><pre>    @property (nonatomic, strong) YTPlayerView *player;</pre></div>
+
+<p><strong>4)</strong> Then, set the player with the preferred frame.</p>
+
+<div class="highlight highlight-objc"><pre>    <span class="pl-c">// setting up the player</span>
+    self.player = [[YTPlayerView <span class="pl-s3">alloc</span>] <span class="pl-s3">initWithFrame:</span><span class="pl-s3">CGRectMake</span>(<span class="pl-c1">0</span>, <span class="pl-c1">50</span>, <span class="pl-c1">320</span>, <span class="pl-c1">350</span>)];</pre></div>
+
+<p><strong>5)</strong> Then, you can load a playlist or just a simple video with the youtube videoId or playlistId (more options available, like loading 5 multiple videos). </p>
+
+<div class="highlight highlight-objc"><pre>    <span class="pl-c">// loading videoId </span>
+    [<span class="pl-v">self</span>.player <span class="pl-s3">loadWithVideoId:</span><span class="pl-s1"><span class="pl-pds">@"</span>O8TiugM6Jg<span class="pl-pds">"</span></span>];
+
+    <span class="pl-c">// loading playlist</span>
+    [<span class="pl-v">self</span>.player <span class="pl-s3">loadWithPlaylistId:</span><span class="pl-s1"><span class="pl-pds">@"</span>PLEE58C6029A8A6ADE<span class="pl-pds">"</span></span>];</pre></div>
+
+<p><strong>6)</strong> Optional, you can also load the video/playlist with some parameters to customize the youtube player.</p>
+
+<div class="highlight highlight-objc"><pre>    <span class="pl-c">// first create your dictionary to set the different parameters</span>
+    @property (nonatomic, strong) <span class="pl-s3">NSDictionary</span> *dictionary;
+
+    <span class="pl-c">// setting up player parameters</span>
+    self.dictionary = @{<span class="pl-s1"><span class="pl-pds">@"</span>listType<span class="pl-pds">"</span></span> : <span class="pl-s1"><span class="pl-pds">@"</span>playlist<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">@"</span>autoplay<span class="pl-pds">"</span></span> : <span class="pl-s1"><span class="pl-pds">@"</span>1<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">@"</span>loop<span class="pl-pds">"</span></span> : <span class="pl-s1"><span class="pl-pds">@"</span>1<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">@"</span>playsinline<span class="pl-pds">"</span></span> : <span class="pl-s1"><span class="pl-pds">@"</span>0<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">@"</span>controls<span class="pl-pds">"</span></span> : <span class="pl-s1"><span class="pl-pds">@"</span>2<span class="pl-pds">"</span></span>,
+                        <span class="pl-s1"><span class="pl-pds">@"</span>cc_load_policy<span class="pl-pds">"</span></span> : <span class="pl-s1"><span class="pl-pds">@"</span>0<span class="pl-pds">"</span></span>,};
+
+    <span class="pl-c">// loading playlist with player paramaters</span>
+    [<span class="pl-v">self</span>.player <span class="pl-s3">loadWithPlaylistId:</span><span class="pl-s1"><span class="pl-pds">@"</span>PLEE58C6029A8A6ADE<span class="pl-pds">"</span></span> <span class="pl-s3">playerVars:</span><span class="pl-v">self</span>.dictionary];
+
+    <span class="pl-c">// ******** OR **********</span>
+
+    <span class="pl-c">// use some customs parameters which will be load to the video like this.. (just for simplicity)</span>
+    self.player.autoplay = <span class="pl-c1">YES</span>;
+    self.player.modestbranding = <span class="pl-c1">YES</span>;
+
+    <span class="pl-c">// and then just call load the playlist/video</span>
+    [<span class="pl-v">self</span>.player <span class="pl-s3">loadWithPlaylistId:</span><span class="pl-s1"><span class="pl-pds">@"</span>PLEE58C6029A8A6ADE<span class="pl-pds">"</span></span>];</pre></div>
+
+<p><strong>7)</strong> Finally, add the player to your view and Done!</p>
+
+<div class="highlight highlight-objc"><pre>    <span class="pl-c">// adding to subview</span>
+    [<span class="pl-v">self</span>.view <span class="pl-s3">addSubview:</span><span class="pl-v">self</span>.player];</pre></div>
+
+<p><strong>8)</strong> Extra, Some helper functions were added to the project that you might want to use (just set the variable before loading the video) as...</p>
+
+<div class="highlight highlight-objc"><pre>    <span class="pl-c">// allows landscape mode </span>
+    self.player.allowLandscapeMode = <span class="pl-c1">YES</span>;
+
+    <span class="pl-c">// force to go back to portrait when exit fullscreen (this requires extra settings)</span>
+    self.player.forceBackToPortraitMode = <span class="pl-c1">YES</span>; 
+
+    <span class="pl-c">// for forcing the portrait mode and allowing landscape you need to do this in your AppDelegate</span>
+
+    <span class="pl-c">// this in your AppDelegate.h</span>
+    @property (nonatomic) <span class="pl-st">BOOL</span> videoIsInFullscreen;
+
+    <span class="pl-c">// and this in your AppDelegate.m</span>
+    - (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+        <span class="pl-k">if</span>(self.<span class="pl-vo">videoIsInFullscreen</span> == <span class="pl-c1">YES</span>) {
+            <span class="pl-k">return</span> UIInterfaceOrientationMaskAllButUpsideDown;
+        }
+        <span class="pl-k">else</span> {
+            <span class="pl-k">return</span> UIInterfaceOrientationMaskPortrait;
+        }
+    }</pre></div>
+
+<p><strong>DONE!</strong></p>
+
+<p>If you wish to help and improve this library, please fee free to create your own brach and submit your improvement. It will go under review and then added to the project if it's accepted. </p>
+
+<h3>
+<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>Just myself <a href="https://github.com/jv17" class="user-mention">@jv17</a>, I decided to create a simple youtube player for others who are interested in something simple and easy to use.  </p>
+
+<h3>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+<p>Check out my website <a href="http://jorgedeveloper.com">http://jorgedeveloper.com</a> or contact <a href="mailto:jv17@github.com">jv17@github.com</a> and I will be happy to help you.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/JV17/YoutubePlayer/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/JV17/YoutubePlayer/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/JV17/YoutubePlayer"></a> is maintained by <a href="https://github.com/JV17">JV17</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
