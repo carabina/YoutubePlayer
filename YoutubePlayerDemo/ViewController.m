@@ -22,9 +22,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 
-    // adding to subview
-    [self.view addSubview:[self setPlayer]];
+    // loading playlist to video player
+    [self.player loadWithPlaylistId:@"PLEE58C6029A8A6ADE"];
+    
+    [self.player setPlaybackQuality:kYTPlaybackQualityHD720];
 
+    // adding to subview
+    [self.view addSubview:self.player];
     
     NSArray *colors = [[NSArray alloc] initWithObjects:FlatGreen, FlatMint, nil];
     
@@ -56,25 +60,46 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
 }
 
-#pragma mark - Helper Functions
 
--(YTPlayerView*)setPlayer{
+#pragma mark -
+#pragma mark Getters and Setters
+
+-(YTPlayerView*)player
+{
     if(!_player)
     {
-        self.player = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 220)];
-        self.player.delegate = self;
-        self.player.autoplay = YES;
-        self.player.modestbranding = YES;
-        self.player.allowLandscapeMode = YES;
-        //    self.player.forceBackToPortraitMode = YES;
-        self.player.allowAutoResizingPlayerFrame = YES;
-        self.player.playsinline = YES;
-        self.player.fullscreen = YES;
-        
-        [self.player loadWithPlaylistId:@"PLEE58C6029A8A6ADE"];
+        _player = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 220)];
+        _player.delegate = self;
+        _player.autoplay = YES;
+        _player.modestbranding = YES;
+        _player.allowLandscapeMode = YES;
+        _player.forceBackToPortraitMode = YES;
+        _player.allowAutoResizingPlayerFrame = YES;
+        _player.playsinline = YES;
+        _player.fullscreen = YES;
+        _player.hd = YES;
     }
+    
     return _player;
 }
+
+
+#pragma mark -
+#pragma mark Player delegates
+
+- (void)playerView:(YTPlayerView *)playerView didChangeToQuality:(YTPlaybackQuality)quality
+{
+    [_player setPlaybackQuality:kYTPlaybackQualityHD720];
+}
+
+//- (void)playerView:(YTPlayerView *)playerView receivedError:(YTPlayerError)error
+//{
+//    [self.player nextVideo];
+//}
+
+
+#pragma mark -
+#pragma mark Helper Functions
 
 - (void)sphereDidSelected:(int)index
 {
@@ -98,17 +123,14 @@
     
 }
 
-//- (void)playerView:(YTPlayerView *)playerView receivedError:(YTPlayerError)error
-//{
-//    [self.player nextVideo];
-//}
-
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
 }
 
-#pragma mark - Notifications
+
+#pragma mark -
+#pragma mark Notifications
 
 -(void)appIsInBakcground:(NSNotification*)notification{
     [self.player playVideo];

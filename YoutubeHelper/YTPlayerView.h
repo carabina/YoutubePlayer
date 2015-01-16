@@ -156,7 +156,9 @@ typedef enum {
 
 @property BOOL theme; // default is dark, available dark and light (if YES == light)
 
-@property(nonatomic, strong, readonly) UIWebView *webView;
+@property BOOL hd;
+
+@property(nonatomic, strong) UIWebView *webView;
 
 /** A delegate to be notified on playback events. */
 @property(nonatomic, weak) id<YTPlayerViewDelegate> delegate;
