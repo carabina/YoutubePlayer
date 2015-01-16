@@ -71,6 +71,7 @@
         _player = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 220)];
         _player.delegate = self;
         _player.autoplay = YES;
+        _player.hd720 = YES;
         _player.modestbranding = YES;
         _player.allowLandscapeMode = YES;
         _player.forceBackToPortraitMode = YES;

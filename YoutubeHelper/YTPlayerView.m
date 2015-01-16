@@ -96,6 +96,8 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 @synthesize start = _start;
 @synthesize theme = _theme;
 @synthesize hd = _hd;
+@synthesize hd720 = _hd720;
+@synthesize hd1080 = _hd1080;
 
 - (BOOL)loadWithVideoId:(NSString *)videoId
 {
@@ -1344,6 +1346,28 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
         [self.dicParameters setObject:@(1) forKey:@"hd"];
     }
     _hd = hd;
+}
+
+-(BOOL)hd720 {
+    return _hd720;
+}
+
+-(void)setHd720:(BOOL)hd720 {
+    if(hd720 == YES) {
+        [self.dicParameters setObject:@"hd720" forKey:@"vq"];
+    }
+    _hd720 = hd720;
+}
+
+-(BOOL)hd1080 {
+    return _hd1080;
+}
+
+-(void)setHd1080:(BOOL)hd1080 {
+    if(hd1080 == YES) {
+        [self.dicParameters setObject:@"hd1080" forKey:@"vq"];
+    }
+    _hd1080 = hd1080;
 }
 
 @end
