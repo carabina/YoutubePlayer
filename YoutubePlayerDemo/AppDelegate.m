@@ -19,18 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-
     NSError *setCategoryError = nil;
-    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: &setCategoryError];
-    
-//    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-//    BOOL ok;
-//    NSError *setCategoryError = nil;
-//    ok = [audioSession setCategory:AVAudioSessionCategoryPlayback
-//                             error:&setCategoryError];
-//    if (!ok) {
-//        NSLog(@"%s setCategoryError=%@", __PRETTY_FUNCTION__, setCategoryError);
-//    }
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryError];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&setCategoryError];
     
     return YES;
 }
@@ -57,7 +48,8 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window
+{
     if(self.videoIsInFullscreen == YES)
     {
         return UIInterfaceOrientationMaskAllButUpsideDown;
@@ -65,6 +57,25 @@
     else
     {
         return UIInterfaceOrientationMaskPortrait;
+    }
+}
+
+-(void)remoteControlReceivedWithEvent:(UIEvent *)event { switch (event.subtype)
+{
+    case UIEventSubtypeRemoteControlPlay:
+        NSLog(@"AppDelegate PLAY remoteControlReceivedWithEvent");
+        break;
+    case UIEventSubtypeRemoteControlPause:
+        NSLog(@"AppDelegate PAUSE UIEventSubtypeRemoteControlPause");
+        break;
+    case UIEventSubtypeRemoteControlNextTrack:
+        NSLog(@"AppDelegate NEXT UIEventSubtypeRemoteControlNextTrack");
+        break;
+    case UIEventSubtypeRemoteControlPreviousTrack:
+        NSLog(@"AppDelegate PREV UIEventSubtypeRemoteControlPreviousTrack");
+        break;
+    default:
+        break;
     }
 }
 
