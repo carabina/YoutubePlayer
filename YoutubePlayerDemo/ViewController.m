@@ -20,7 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    NSArray *colors = [[NSArray alloc] initWithObjects:FlatGreen, FlatMint, nil];
+    
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
 
     // loading playlist to video player
     [self.player loadWithPlaylistId:@"PLEE58C6029A8A6ADE"];
@@ -30,16 +33,12 @@
     // adding to subview
     [self.view addSubview:self.player];
     
-    NSArray *colors = [[NSArray alloc] initWithObjects:FlatGreen, FlatMint, nil];
-    
-    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view.frame andColors:colors];
-    
     UIImage *startImage = [UIImage imageNamed:@"start"];
     UIImage *image1 = [UIImage imageNamed:@"rewind"];
     UIImage *image2 = [UIImage imageNamed:@"player"];
     UIImage *image3 = [UIImage imageNamed:@"forward"];
     NSArray *images = @[image1, image2, image3];
-    SphereMenu *sphereMenu = [[SphereMenu alloc] initWithStartPoint:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height-120)
+    SphereMenu *sphereMenu = [[SphereMenu alloc] initWithStartPoint:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*.8)
                                                          startImage:startImage
                                                       submenuImages:images];
     sphereMenu.delegate = self;
@@ -68,9 +67,9 @@
 {
     if(!_player)
     {
-        _player = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 50, self.view.bounds.size.width, 220)];
+        _player = [[YTPlayerView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 240)];
         _player.delegate = self;
-        _player.autoplay = YES;
+        _player.autoplay = NO;
         _player.hd720 = YES;
         _player.modestbranding = YES;
         _player.allowLandscapeMode = YES;

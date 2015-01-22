@@ -988,21 +988,29 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
  */
 - (void)orientationChanged:(NSNotification*)notification
 {
-    UIDevice *device = [UIDevice currentDevice];
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
     
-    if(device.orientation == UIDeviceOrientationLandscapeLeft || device.orientation == UIDeviceOrientationLandscapeRight)
+    if(UIDeviceOrientationIsLandscape(orientation))
     {
-        _screenRect = [[UIScreen mainScreen] bounds].size;
-        _screenHeight = _screenRect.height;
-        _screenWidth = _screenRect.width;
-        
+        if(IS_OS_7_OR_LATER && !IS_OS_8_OR_LATER)
+        {
+            _screenRect = [[UIScreen mainScreen] bounds].size;
+            _screenHeight = _screenRect.width; // the values are flipped
+            _screenWidth = _screenRect.height;
+        }
+        else if (IS_OS_8_OR_LATER)
+        {
+            _screenRect = [[UIScreen mainScreen] bounds].size;
+            _screenHeight = _screenRect.height;
+            _screenWidth = _screenRect.width;
+        }
         self.frame = CGRectMake(0, 0, self.screenWidth, self.screenHeight);
     }
-    else if(device.orientation == UIDeviceOrientationPortrait)
+    else if(orientation == UIDeviceOrientationPortrait)
     {
         self.frame = _prevFrame;
     }
-    else if (device.orientation == UIDeviceOrientationPortraitUpsideDown)
+    else if (orientation == UIDeviceOrientationPortraitUpsideDown)
     {
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIInterfaceOrientationPortrait] forKey:@"orientation"];
         
