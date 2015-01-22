@@ -935,11 +935,13 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
  * @param ...
  * @return void...
  */
-- (void)playerStarted//:(NSNotification*)notification
+- (void)playerStarted
 {
-    ((AppDelegate*)[[UIApplication sharedApplication] delegate]).videoIsInFullscreen = YES;
-    
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
+    if(self.forceBackToPortraitMode == YES)
+    {
+        ((AppDelegate*)[[UIApplication sharedApplication] delegate]).videoIsInFullscreen = YES;
+        [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:NO];
+    }
 }
 
 
@@ -950,7 +952,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
  * @param ...
  * @return void...
  */
-- (void)playerEnded//:(NSNotification*)notification
+- (void)playerEnded
 {
     if(self.forceBackToPortraitMode == YES)
     {
@@ -986,21 +988,29 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
  */
 - (void)orientationChanged:(NSNotification*)notification
 {
-    UIDevice *device = [UIDevice currentDevice];
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
     
-    if(device.orientation == UIDeviceOrientationLandscapeLeft || device.orientation == UIDeviceOrientationLandscapeRight)
+    if(UIDeviceOrientationIsLandscape(orientation))
     {
-        _screenRect = [[UIScreen mainScreen] bounds].size;
-        _screenHeight = _screenRect.height;
-        _screenWidth = _screenRect.width;
-        
+        if(IS_OS_7_OR_LATER && !IS_OS_8_OR_LATER)
+        {
+            _screenRect = [[UIScreen mainScreen] bounds].size;
+            _screenHeight = _screenRect.width; // the values are flipped
+            _screenWidth = _screenRect.height;
+        }
+        else if (IS_OS_8_OR_LATER)
+        {
+            _screenRect = [[UIScreen mainScreen] bounds].size;
+            _screenHeight = _screenRect.height;
+            _screenWidth = _screenRect.width;
+        }
         self.frame = CGRectMake(0, 0, self.screenWidth, self.screenHeight);
     }
-    else if(device.orientation == UIDeviceOrientationPortrait)
+    else if(orientation == UIDeviceOrientationPortrait)
     {
         self.frame = _prevFrame;
     }
-    else if (device.orientation == UIDeviceOrientationPortraitUpsideDown)
+    else if (orientation == UIDeviceOrientationPortraitUpsideDown)
     {
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIInterfaceOrientationPortrait] forKey:@"orientation"];
         
@@ -1074,13 +1084,15 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setAllowAutoResizingPlayerFrame:(BOOL)allowAutoResizingPlayerFrame {
     
     if(allowAutoResizingPlayerFrame == YES) {
-        // current device
-        UIDevice *device = [UIDevice currentDevice];
-        
-        //Tell it to start monitoring the accelerometer for orientation
-        [device beginGeneratingDeviceOrientationNotifications];
-        //Get the notification centre for the app
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:device];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // current device
+            UIDevice *device = [UIDevice currentDevice];
+            
+            //Tell it to start monitoring the accelerometer for orientation
+            [device beginGeneratingDeviceOrientationNotifications];
+            //Get the notification centre for the app
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:device];
+        });
     }
     _allowAutoResizingPlayerFrame = allowAutoResizingPlayerFrame;
 }
@@ -1355,6 +1367,8 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 -(void)setHd720:(BOOL)hd720 {
     if(hd720 == YES) {
         [self.dicParameters setObject:@"hd720" forKey:@"vq"];
+        [self.dicParameters setObject:@"640px" forKey:@"width"];
+        [self.dicParameters setObject:@"360px" forKey:@"height"];
     }
     _hd720 = hd720;
 }
